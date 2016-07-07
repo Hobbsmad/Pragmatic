@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'die'
 
 class Game
   def initialize(title)
@@ -14,13 +15,21 @@ class Game
     puts "There are #{@players.size} players in #{@title}:"
     @players.each do |player|
       puts player
-    end
+  end
+
     @players.each do |player|
-      player.blam
-      player.wOOt
-      player.wOOt
+      die = Die.new
+      case die.roll
+      when 1..2
+        player.blam
+      when 3..4
+        puts "#{player.name} was skipped."
+      else
+        player.wOOt
+      end
       puts player
     end
   end
 end
+
 #this is a comment
